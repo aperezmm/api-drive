@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start:dev": "nodemon src/index.js"
+    "start:dev": "nodemon src/index.js",
+    "start:up": "node src/index.js"
   },
   "author": "Grupo Carpinelo 1 ISF",
   "license": "ISC",
