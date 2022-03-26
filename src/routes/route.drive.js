@@ -3,8 +3,11 @@ const router = express.Router();
 const driveController= require('./../controller/drive.controller');
 const multer=require('multer');
 const storage =multer.diskStorage({
+    destination:function (req,file,cb){
+        cb(null,'public')
+    } ,   
     filename: function(req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now())
+        cb(null, file.originalname)
     }
 });
 

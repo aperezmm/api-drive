@@ -11,7 +11,7 @@ module.exports=class GoogleDrive {
         client.setCredentials({refresh_token: refreshToken});
         return google.drive({
             version:'v3',
-            auth:client
+            auth: client
         });
     }
 
