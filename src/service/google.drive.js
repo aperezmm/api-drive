@@ -80,4 +80,10 @@ module.exports=class GoogleDrive {
 
       return file.data;
     }
+
+    async deleteFile(fileId){
+      await this.driveClient.files.delete({
+        fileId:fileId,
+      })
+    }
 };

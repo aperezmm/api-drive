@@ -16,6 +16,7 @@ const upload=multer({storage});
 router.post('/', upload.single('file'),driveController.uploadFile);
 router.get('/',driveController.allFolders);
 router.get('/:id',driveController.filesByFolder );
-router.get('/file/:id', driveController.viewFile)
+router.get('/file/:id', driveController.viewFile);
+router.delete('/:id',driveController.deleteFile);
 
 module.exports=router;
