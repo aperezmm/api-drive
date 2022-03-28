@@ -11,7 +11,7 @@ module.exports=class GoogleDrive {
         client.setCredentials({refresh_token: refreshToken});
         return google.drive({
             version:'v3',
-            auth:client
+            auth: client
         });
     }
 
@@ -79,5 +79,11 @@ module.exports=class GoogleDrive {
       });
 
       return file.data;
+    }
+
+    async deleteFile(fileId){
+      await this.driveClient.files.delete({
+        fileId:fileId,
+      })
     }
 };

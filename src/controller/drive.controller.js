@@ -100,3 +100,13 @@ exports.viewFile=async(req,res)=>{
     return res.status(500).send({message:'Internal server error'});
   }
 }
+
+exports.deleteFile= async(req, res)=>{
+  try {
+    const{id}=req.params;
+    await GoogleDriveService.deleteFile(id);
+    return res.send({message:'file deleted',})
+  } catch (error) {
+    return res.status(500).send({message:'Internal server error'});
+  }
+}
