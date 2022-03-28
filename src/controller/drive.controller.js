@@ -22,23 +22,15 @@ const path=require('path');
   try {
     const{mimetype, originalname}=req.file;
     const filePath=path.resolve(__dirname,`../../public/${originalname}`);
-    const {folderId, folder} = req.body;
-
-    // Si ya tenemos la ID no debemos ir a buscar nada, solo subir a la misma carpeta.
-    if(folderId){
-      await GoogleDriveService.saveFile(originalname, filePath, mimetype, folderId);
-      fs.unlinkSync(filePath);
-      return res.send({message:'file uploaded successful'});
-    }else{
-      let folderExist = await GoogleDriveService.searchFolder(folder)
-      if (!folderExist) {
-        folderExist = await GoogleDriveService.createFolder(folder);
-      }
-
-      await GoogleDriveService.saveFile(originalname, filePath, mimetype, folderExist.id);
-      fs.unlinkSync(filePath);
-      return res.send({message:'file uploaded successful'});
-    }
+    const {folder}=req.body;
+    let folderExist = await GoogleDriveService.searchFolder(folder)
+    if (!folderExist) {
+      folderExist = await GoogleDriveService.createFolder(folder);
+    }  
+    await GoogleDriveService.saveFile(originalname, filePath, mimetype, folderExist.id);
+    fs.unlinkSync(filePath);
+    return res.send({message:'file uploaded successful'});
+    
   } catch (error) {
     console.log(error);
     return res.status(500).send({message:'Internal server error'});
