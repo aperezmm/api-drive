@@ -1,7 +1,8 @@
 const express= require('express');
 const cors=require('cors');
 const logger= require('morgan');
-const driveRoute=require('./routes/route.drive')
+const driveRoute=require('./routes/route.drive');
+require('./config/firebase')
 
 
 const app= express();
