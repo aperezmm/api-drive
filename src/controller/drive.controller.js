@@ -59,6 +59,7 @@ exports.allFolders= async(req,res)=>{
     if(!folders) return send.status(404).send({message:`No hay carpetas`});
     return res.send({message:'ok', folder:folders});
   } catch (error) {
+    console.log(error)
     return res.status(500).send({message:'Internal server error'});
   }
 }

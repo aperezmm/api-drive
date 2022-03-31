@@ -7,17 +7,17 @@ module.exports= class UserService{
 
     async getUsers(){
         const data = await this.database.get();
-        const users=data.docs.map(user=>({id:user.id, ...user.data()}));
+        const users=data.docs.map(user=>({id:user.id, names:user.data().names, lastnames:user.data().lastnames, dni:user.data().dni, email:user.data().email}));
         return users;
     }
 
     async create(data){
-        await this.databse.add(data);
+        await this.database.add(data);
     }
 
     async getUserByDni(dni){
         const user=await this.database.where('dni','==', dni).get()
-        return user.docs[0];
+        return user;
     }
 
     async getUserById(id){
