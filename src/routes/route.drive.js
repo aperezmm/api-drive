@@ -14,9 +14,9 @@ const upload=multer({storage});
 const middelware=require('./../middleware/accestoken');
 
 router.post('/', middelware.verifyToken,upload.single('file'),driveController.uploadFile);
-router.get('/',middelware.verifyToken,driveController.allFolders);
-router.get('/:id',middelware.verifyToken,driveController.filesByFolder );
-router.get('/file/:id', middelware.verifyToken,driveController.viewFile);
+router.get('/',driveController.allFolders);
+router.get('/:id',driveController.filesByFolder );
+router.get('/file/:id',driveController.viewFile);
 router.delete('/:id',middelware.verifyToken,driveController.deleteFile);
 
 module.exports=router;
