@@ -1,4 +1,4 @@
-# Api para mamenjo de archivos por el drive
+# Api para manejo de archivos por el drive
 Esta es una Api desarrollada para simplificar el manejo de archivos en el drive.
 
 ## Instalaciones
