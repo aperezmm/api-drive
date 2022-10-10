@@ -10,13 +10,13 @@ const storage =multer.diskStorage({
         cb(null, file.originalname)
     }
 });
-
 const upload=multer({storage});
+const middelware=require('./../middleware/accestoken');
 
-router.post('/', upload.single('file'),driveController.uploadFile);
+router.post('/', middelware.verifyToken,upload.single('file'),driveController.uploadFile);
 router.get('/',driveController.allFolders);
 router.get('/:id',driveController.filesByFolder );
-router.get('/file/:id', driveController.viewFile);
-router.delete('/:id',driveController.deleteFile);
+router.get('/file/:id',driveController.viewFile);
+router.delete('/:id',middelware.verifyToken,driveController.deleteFile);
 
 module.exports=router;

@@ -18,12 +18,13 @@ const path=require('path');
  * @returns 
  * Retorn un mensaje cque dice : file uploaded successful
  */
-exports.uploadFile= async(req, res)=>{
+ exports.uploadFile= async(req, res)=>{
   try {
     const{mimetype, originalname}=req.file;
     const filePath=path.resolve(__dirname,`../../public/${originalname}`);
     const {folderId, folder} = req.body;
 
+    // Si ya tenemos la ID no debemos ir a buscar nada, solo subir a la misma carpeta.
     if(folderId){
       await GoogleDriveService.saveFile(originalname, filePath, mimetype, folderId);
       fs.unlinkSync(filePath);
@@ -58,6 +59,7 @@ exports.allFolders= async(req,res)=>{
     if(!folders) return send.status(404).send({message:`No hay carpetas`});
     return res.send({message:'ok', folder:folders});
   } catch (error) {
+    console.log(error)
     return res.status(500).send({message:'Internal server error'});
   }
 }
