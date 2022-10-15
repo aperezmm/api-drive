@@ -15,7 +15,6 @@ app.use(cors());
 app.use('/auth', authController);
 app.use('/drive', driveRoute)
 app.use('/users', userRoute);
-
-app.listen(3000,()=>{
+app.listen(process.env.PORT,()=>{
     console.log('Server listening on 3000...')
 });
