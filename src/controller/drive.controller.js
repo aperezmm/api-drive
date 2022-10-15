@@ -55,7 +55,9 @@ const path=require('path');
  */
 exports.allFolders= async(req,res)=>{
   try {
+    console.log("TRATANDO DE HACER SOLICITUD");
     const folders= await GoogleDriveService.allFolders();
+    console.log("FOLDERSSS", folders);
     if(!folders) return send.status(404).send({message:`No hay carpetas`});
     return res.send({message:'ok', folder:folders});
   } catch (error) {
